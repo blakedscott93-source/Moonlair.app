@@ -4,7 +4,6 @@ import Script from "next/script";
 import "./globals.css";
 import SchemaMarkup from "@/components/seo/schema-markup";
 import HydrationErrorBoundary from "@/components/ErrorBoundary";
-import MetaPixel from "@/components/MetaPixel";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -142,7 +141,6 @@ export default function RootLayout({
       <body className="font-sans antialiased" suppressHydrationWarning={true}>
         <HydrationErrorBoundary />
         <SchemaMarkup />
-        <MetaPixel />
         {children}
       </body>
     </html>
