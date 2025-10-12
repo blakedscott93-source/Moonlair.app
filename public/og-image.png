@@ -1,0 +1,52 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="url(#gradient)"/>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF8E1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFEFD5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFB84C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Logo -->
+  <circle cx="150" cy="150" r="80" fill="white"/>
+  <circle cx="150" cy="150" r="60" fill="#1e293b"/>
+  <path d="M120 150c0-16.57 13.43-30 30-30s30 13.43 30 30-13.43 30-30 30-30-13.43-30-30z" fill="#f59e0b"/>
+  <path d="M120 150c0-16.57 13.43-30 30-30s30 13.43 30 30c0 8.28-3.36 15.79-8.79 21.21C166.21 186.64 158.7 190 150 190c-16.57 0-30-13.43-30-30z" fill="none"/>
+  <circle cx="180" cy="130" r="3" fill="#f59e0b"/>
+  <circle cx="190" cy="150" r="2.5" fill="#f59e0b"/>
+  <circle cx="185" cy="170" r="3.5" fill="#f59e0b"/>
+  <circle cx="195" cy="185" r="2" fill="#f59e0b"/>
+  
+  <!-- Title -->
+  <text x="350" y="180" fill="#1e293b" font-family="Inter, sans-serif" font-size="48" font-weight="bold">
+    Manifest Your Best Self,
+  </text>
+  <text x="350" y="240" fill="#f59e0b" font-family="Inter, sans-serif" font-size="48" font-weight="bold">
+    Every Day
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="350" y="290" fill="#374151" font-family="Inter, sans-serif" font-size="24">
+    Turn every new tab into your personal manifestation dashboard
+  </text>
+  <text x="350" y="320" fill="#374151" font-family="Inter, sans-serif" font-size="24">
+    with tasks, journaling, habits, and mindfulness tools
+  </text>
+  
+  <!-- Features -->
+  <circle cx="350" cy="380" r="8" fill="#f59e0b"/>
+  <text x="375" y="390" fill="#374151" font-family="Inter, sans-serif" font-size="20">369 Manifestation Method</text>
+  
+  <circle cx="350" cy="410" r="8" fill="#f59e0b"/>
+  <text x="375" y="420" fill="#374151" font-family="Inter, sans-serif" font-size="20">Gratitude Journaling</text>
+  
+  <circle cx="350" cy="440" r="8" fill="#f59e0b"/>
+  <text x="375" y="450" fill="#374151" font-family="Inter, sans-serif" font-size="20">Habit Tracking & Analytics</text>
+  
+  <!-- CTA -->
+  <rect x="350" y="480" width="200" height="50" rx="25" fill="#f59e0b"/>
+  <text x="450" y="510" text-anchor="middle" fill="white" font-family="Inter, sans-serif" font-size="18" font-weight="bold">
+    Add to Chrome
+  </text>
+</svg>
