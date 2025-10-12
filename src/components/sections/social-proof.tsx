@@ -16,7 +16,7 @@ const testimonials = [
     avatar: "MR"
   },
   {
-    content: "The interface is beautiful and intuitive. It's like having a manifestation coach right in my browser tab every day.",
+    content: "The interface is beautiful and intuitive. It&apos;s like having a manifestation coach right in my browser tab every day.",
     author: "Emily L.",
     avatar: "EL"
   }
