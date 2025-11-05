@@ -132,6 +132,7 @@ export default function LandingPage() {
                   transition={{ duration: 0.2 }}
                   onClick={triggerHandWiggle}
                 >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/fingerpoint.png"
                     alt="Click hand"
@@ -260,7 +261,7 @@ export default function LandingPage() {
                 icon: CheckCircle,
                 number: "3",
                 title: "Get Upgraded (24hrs)",
-                description: "We'll activate your Lifetime Pro within 24 hours. You'll get an email confirmation."
+                description: "We&apos;ll activate your Lifetime Pro within 24 hours. You&apos;ll get an email confirmation."
               }
             ].map((step, index) => {
               const Icon = step.icon;
@@ -558,14 +559,14 @@ export default function LandingPage() {
                 initial: "S"
               },
               {
-                quote: "The 369 manifestation feature actually helped me stay consistent. I've been journaling for 30 days straight!",
+                quote: "The 369 manifestation feature actually helped me stay consistent. I&apos;ve been journaling for 30 days straight!",
                 name: "Michael T.",
                 role: "Entrepreneur",
                 rating: 5,
                 initial: "M"
               },
               {
-                quote: "Love that it's free and doesn't require another login. Just install and go!",
+                quote: "Love that it&apos;s free and doesn&apos;t require another login. Just install and go!",
                 name: "Jessica L.",
                 role: "Student",
                 rating: 5,

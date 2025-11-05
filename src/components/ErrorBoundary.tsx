@@ -17,8 +17,8 @@ export default function HydrationErrorBoundary() {
           message.includes('bis_skin_checked') ||
           message.includes('server rendered HTML') ||
           message.includes('tree hydrated') ||
-          message.includes('didn&apos;t match the client properties') ||
-          message.includes('This won&apos;t be patched up') ||
+          message.includes("didn't match the client properties") ||
+          message.includes("This won't be patched up") ||
           message.includes('A tree hydrated but some attributes') ||
           message.includes('browser extension') ||
           message.includes('messes with the HTML') ||
