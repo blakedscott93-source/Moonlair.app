@@ -42,9 +42,9 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
           >
-            Manifest Your Dreams,{" "}
+            Turn Every Browser Tab Into A{" "}
             <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 bg-clip-text text-transparent">
-              Every Day
+              Productivity Moment
             </span>
           </motion.h1>
 
@@ -55,7 +55,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Moonifest turns your new tab into a manifestation hub with 369 method, gratitude journaling, habit tracking, and daily affirmations.
+            Track tasks, practice gratitude, build habits, and stay focused - all without leaving your browser. Join 500+ users transforming their productivity.
           </motion.p>
 
           {/* CTAs */}
@@ -63,24 +63,34 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+            className="flex flex-col items-center mb-8"
           >
             <Button
               asChild
               size="lg"
-              className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300 mb-3"
             >
               <Link href="https://chrome.google.com/webstore/detail/fhbkcimpcdmddemoglnmodpkinabamlb">
                 <Chrome className="h-5 w-5 mr-2" />
-                Add to Chrome
+                Install Free Extension
               </Link>
             </Button>
+            
+            {/* Secondary line under button */}
+            <p className="text-sm text-muted-foreground mb-6">
+              ✓ Free forever  ✓ No credit card  ✓ 2-minute setup
+            </p>
+            
+            {/* Trust indicators */}
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              ⭐⭐⭐⭐⭐ 5.0 rating  •  500+ users
+            </p>
             
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="text-lg px-8 py-6 border-2 hover:bg-yellow-50 dark:hover:bg-yellow-950/20 transition-all duration-300"
+              className="text-lg px-8 py-6 border-2 hover:bg-yellow-50 dark:hover:bg-yellow-950/20 transition-all duration-300 mt-6"
             >
               <Link href="/features">
                 Explore Features
