@@ -49,7 +49,7 @@ export default function LandingPage() {
             <div className="container mx-auto px-4 py-3 md:py-4 h-[60px] md:h-[60px] flex items-center justify-center relative">
               <div className="flex flex-col md:flex-row items-center gap-2 md:gap-3 text-center md:text-left">
                 <span className="text-sm md:text-base font-medium">
-                  🔥 Founder's Offer: FREE Lifetime Pro for First 100 Users{" "}
+                  🔥 Founder&apos;s Offer: FREE Lifetime Pro for First 100 Users{" "}
                   <span className="text-[#F59E0B] font-semibold">($149 Value)</span>
                 </span>
                 <motion.span
@@ -238,7 +238,7 @@ export default function LandingPage() {
               How to Claim Your FREE Lifetime Pro
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Follow these 3 simple steps to secure your founder's spot
+              Follow these 3 simple steps to secure your founder&apos;s spot
             </p>
           </motion.div>
 
@@ -248,7 +248,7 @@ export default function LandingPage() {
                 icon: Download,
                 number: "1",
                 title: "Install Moonifest",
-                description: "Click 'Claim Your Lifetime Pro' and add the extension to Chrome."
+                description: "Click &apos;Claim Your Lifetime Pro&apos; and add the extension to Chrome."
               },
               {
                 icon: User,
@@ -592,7 +592,7 @@ export default function LandingPage() {
 
                 {/* Quote */}
                 <p className="text-gray-700 leading-relaxed mb-6 text-center">
-                  "{testimonial.quote}"
+                  &ldquo;{testimonial.quote}&rdquo;
                 </p>
 
                 {/* User Info */}
@@ -644,7 +644,7 @@ export default function LandingPage() {
                 </h2>
                 <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
                   Install Moonifest and create your account to claim your FREE Lifetime Pro{" "}
-                  <span className="text-[#F59E0B] font-semibold">($149 value)</span>. We'll upgrade you within 24 hours. No credit card required.
+                  <span className="text-[#F59E0B] font-semibold">($149 value)</span>. We&apos;ll upgrade you within 24 hours. No credit card required.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
