@@ -74,7 +74,7 @@ export default function Navigation() {
               asChild
               className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white"
             >
-              <Link href="https://chrome.google.com/webstore/detail/fhbkcimpcdmddemoglnmodpkinabamlb">
+              <Link href="https://chromewebstore.google.com/detail/moonifest-your-daily-dash/fhbkcimpcdmddemoglnmodpkinabamlb" target="_blank" rel="noopener noreferrer">
                 Add to Chrome
               </Link>
             </Button>

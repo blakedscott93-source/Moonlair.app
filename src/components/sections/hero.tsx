@@ -70,7 +70,7 @@ export default function Hero() {
               size="lg"
               className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300 mb-3"
             >
-              <Link href="https://chrome.google.com/webstore/detail/fhbkcimpcdmddemoglnmodpkinabamlb">
+              <Link href="https://chromewebstore.google.com/detail/moonifest-your-daily-dash/fhbkcimpcdmddemoglnmodpkinabamlb" target="_blank" rel="noopener noreferrer">
                 <Chrome className="h-5 w-5 mr-2" />
                 Install Free Extension
               </Link>
