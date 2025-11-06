@@ -138,23 +138,6 @@ export default function LandingPage() {
     };
   }, [exitPopupVisible, closeExitPopup]);
 
-  // Scroll to hero CTA and highlight it
-  const scrollToHeroCTA = () => {
-    closeExitPopup();
-    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Highlight the CTA button
-      setTimeout(() => {
-        const ctaButton = document.querySelector('.btn-primary');
-        if (ctaButton) {
-          ctaButton.classList.add('ring-4', 'ring-yellow-400', 'ring-opacity-75');
-          setTimeout(() => {
-            ctaButton.classList.remove('ring-4', 'ring-yellow-400', 'ring-opacity-75');
-          }, 2000);
-        }
-      }, 500);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-orange-50 to-yellow-100 pt-[60px] md:pt-[60px]">
@@ -907,11 +890,18 @@ export default function LandingPage() {
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   >
                     <Button
-                      onClick={scrollToHeroCTA}
+                      asChild
                       size="lg"
                       className="w-full bg-[#F59E0B] hover:bg-[#d88a0a] text-white h-12 text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                      onClick={handleCTAClick}
                     >
-                      Claim My Lifetime Pro Spot →
+                      <a 
+                        href="https://chromewebstore.google.com/detail/moonifest-your-daily-dash/fhbkcimpcdmddemoglnmodpkinabamlb"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Claim My Lifetime Pro Spot →
+                      </a>
                     </Button>
                   </motion.div>
 
