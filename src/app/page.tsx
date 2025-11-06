@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,27 +9,149 @@ import Image from "next/image";
 
 export default function LandingPage() {
   const [bannerVisible, setBannerVisible] = useState(true);
+  const [exitPopupVisible, setExitPopupVisible] = useState(false);
+  const mouseYRef = useRef(0);
+  const popupShownRef = useRef(false);
   
   // TODO: Update this number as users sign up: Spots remaining = 100 - (Current Supabase user count)
   const spotsRemaining = 53;
 
   const scrollToFeatures = () => {
-    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+    if (typeof document !== 'undefined') {
+      document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const triggerHandWiggle = () => {
     // Trigger wiggle animation by temporarily changing the class
-    const hand = document.querySelector('.hand-icon');
-    if (hand) {
-      hand.classList.remove('animate-[bounce-hand_2s_ease-in-out_infinite]');
-      hand.classList.add('animate-wiggle-hand');
+    if (typeof document !== 'undefined') {
+      const hand = document.querySelector('.hand-icon');
+      if (hand) {
+        hand.classList.remove('animate-[bounce-hand_2s_ease-in-out_infinite]');
+        hand.classList.add('animate-wiggle-hand');
+        setTimeout(() => {
+          hand.classList.remove('animate-wiggle-hand');
+          hand.classList.add('animate-[bounce-hand_2s_ease-in-out_infinite]');
+        }, 500);
+      }
+    }
+  };
+
+  // Track CTA button clicks
+  const handleCTAClick = () => {
+    if (typeof window !== 'undefined' && typeof sessionStorage !== 'undefined') {
+      try {
+        sessionStorage.setItem('ctaClicked', 'true');
+      } catch {
+        // sessionStorage might not be available
+      }
+    }
+  };
+
+  // Close exit popup
+  const closeExitPopup = useCallback(() => {
+    setExitPopupVisible(false);
+    if (typeof window !== 'undefined' && typeof sessionStorage !== 'undefined') {
+      try {
+        sessionStorage.setItem('exitPopupShown', 'true');
+      } catch {
+        // sessionStorage might not be available
+      }
+    }
+  }, []);
+
+  // Exit intent detection
+  useEffect(() => {
+    // Guard against SSR
+    if (typeof window === 'undefined' || typeof navigator === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
+    // Check if mobile
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) return;
+
+    // Check if popup already shown or CTA clicked
+    try {
+      if (sessionStorage.getItem('exitPopupShown') === 'true' || sessionStorage.getItem('ctaClicked') === 'true') {
+        return;
+      }
+    } catch {
+      // sessionStorage might not be available
+      return;
+    }
+
+    const topExitThreshold = 50; // pixels from top
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseYRef.current = e.clientY;
+    };
+
+    const handleMouseLeave = (e: MouseEvent) => {
+      // Check if mouse is leaving from the top
+      if (mouseYRef.current < topExitThreshold && e.clientY < 0) {
+        try {
+          if (!popupShownRef.current && sessionStorage.getItem('exitPopupShown') !== 'true') {
+            setExitPopupVisible((prev) => {
+              if (!prev) {
+                popupShownRef.current = true;
+                return true;
+              }
+              return prev;
+            });
+          }
+        } catch {
+          // sessionStorage might not be available
+        }
+      }
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
+
+  // ESC key handler
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && exitPopupVisible) {
+        closeExitPopup();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [exitPopupVisible, closeExitPopup]);
+
+  // Scroll to hero CTA and highlight it
+  const scrollToHeroCTA = () => {
+    closeExitPopup();
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Highlight the CTA button
       setTimeout(() => {
-        hand.classList.remove('animate-wiggle-hand');
-        hand.classList.add('animate-[bounce-hand_2s_ease-in-out_infinite]');
+        const ctaButton = document.querySelector('.btn-primary');
+        if (ctaButton) {
+          ctaButton.classList.add('ring-4', 'ring-yellow-400', 'ring-opacity-75');
+          setTimeout(() => {
+            ctaButton.classList.remove('ring-4', 'ring-yellow-400', 'ring-opacity-75');
+          }, 2000);
+        }
       }, 500);
     }
   };
@@ -149,6 +271,7 @@ export default function LandingPage() {
                     asChild
                     size="lg"
                     className="btn-primary bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-6 py-3 text-base font-semibold shadow-md hover:shadow-[0_0_20px_rgba(255,167,51,0.6)] transition-all duration-300 relative overflow-hidden"
+                    onClick={handleCTAClick}
                   >
                     <a 
                       href="https://chromewebstore.google.com/detail/moonifest-your-daily-dash/fhbkcimpcdmddemoglnmodpkinabamlb"
@@ -657,6 +780,7 @@ export default function LandingPage() {
                       asChild
                       size="lg"
                       className="btn-primary bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white text-xl px-10 py-6 shadow-xl hover:shadow-[0_0_20px_rgba(255,167,51,0.6)] transition-all duration-300 relative overflow-hidden"
+                      onClick={handleCTAClick}
                     >
                       <a 
                         href="https://chromewebstore.google.com/detail/moonifest-your-daily-dash/fhbkcimpcdmddemoglnmodpkinabamlb"
@@ -717,6 +841,93 @@ export default function LandingPage() {
           </p>
         </div>
       </footer>
+
+      {/* Exit Intent Popup */}
+      <AnimatePresence>
+        {exitPopupVisible && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={closeExitPopup}
+              className="fixed inset-0 bg-black/75 z-[10000] flex items-center justify-center p-4"
+              aria-label="Exit popup overlay"
+            >
+              {/* Modal */}
+              <motion.div
+                initial={{ y: -50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -50, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                onClick={(e) => e.stopPropagation()}
+                role="dialog"
+                aria-label="Exit popup"
+                aria-modal="true"
+                className="relative bg-white rounded-2xl max-w-[500px] w-full shadow-[0_20px_60px_rgba(0,0,0,0.3)] p-8"
+                tabIndex={-1}
+              >
+                {/* Close Button */}
+                <button
+                  onClick={closeExitPopup}
+                  className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors duration-200 p-1"
+                  aria-label="Close popup"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+
+                {/* Header */}
+                <div className="text-center mb-6">
+                  <div className="text-6xl mb-4">⚠️</div>
+                  <h2 className="text-[28px] font-bold text-gray-900 mb-4">
+                    Wait! Don&apos;t Miss Your Founder Spot
+                  </h2>
+                </div>
+
+                {/* Body */}
+                <div className="text-center mb-6">
+                  <p className="text-base text-gray-600 mb-5">
+                    Only {spotsRemaining} of 100 Lifetime Pro spots left. Once they&apos;re gone, you&apos;ll pay full price{" "}
+                    <span className="text-[#F59E0B] font-semibold">($149 value)</span>.
+                  </p>
+                  
+                  {/* Urgency Element */}
+                  <p className="text-base font-semibold text-[#F59E0B] mb-6">
+                    🔥 This offer won&apos;t last long
+                  </p>
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="space-y-3">
+                  {/* Primary Button */}
+                  <motion.div
+                    animate={{ scale: [1, 1.02, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <Button
+                      onClick={scrollToHeroCTA}
+                      size="lg"
+                      className="w-full bg-[#F59E0B] hover:bg-[#d88a0a] text-white h-12 text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      Claim My Lifetime Pro Spot →
+                    </Button>
+                  </motion.div>
+
+                  {/* Secondary Button */}
+                  <button
+                    onClick={closeExitPopup}
+                    className="w-full text-sm text-gray-500 hover:text-gray-700 transition-colors duration-200 py-2"
+                  >
+                    No thanks, I&apos;ll pay full price later
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,0 +1,3 @@
+
+> Build error occurred
+[Error: ENOENT: no such file or directory, open 'C:\Users\conta\Desktop\TANGERINE WEBSITE\.next\static\BWYBCYaAoNq9pvom6O_ye\_buildManifest.js.tmp.rofxv41az5m']
